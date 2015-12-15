@@ -84,7 +84,7 @@ class CategoriesController < ApplicationController
         idx = 0
         img_url = article.xpath('//img').first['src']
 
-        post = Post.create(:category_id => category.id, :title => title, :img_url => img_url, :point => point) 
+        post = Post.create(category_id: category_id, title: title, image_url: image_url, point: point) 
 
         comment_url = "http://d8d94e0wul1nb.cloudfront.net/comment?callback=comment_list&appId=a_dd8f2b7d304a10edaf6f29517ea0ca4100a43d1b&url=http%3A%2F%2F9gag.com%2Fgag%2F" + article_id + "&order=score&count=10&level=2&ref=&refCommentId=&commentId="  
         result = Net::HTTP.get(URI.parse(comment_url))
