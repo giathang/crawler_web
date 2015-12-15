@@ -1,0 +1,94 @@
+<div class="blog-masthead">
+   <div class="container">
+     <nav class="blog-nav">
+     <% if category_id==0 %>
+       <%= link_to 'Home', categories_path, html_options = { :class=>"blog-nav-item active"} %>
+      <% else %>
+        <%= link_to 'Home', categories_path, html_options = { :class=>"blog-nav-item"} %>
+      <% end %>
+
+      <% categories_list.each do |category| %>
+        <% if category.id == category_id %>
+          <%= link_to category.name, category, html_options = { :class=>"blog-nav-item active"} %>
+        <% else %>
+          <%= link_to category.name, category, html_options = { :class=>"blog-nav-item"} %>
+        <% end %>
+      <% end %>
+      
+      <% if category_id==0 %>
+        <%= link_to "Admin", "categories/admin", html_options = { :class=>"blog-nav-item"} %>
+       <% else %>
+        <%= link_to "Admin", "admin", html_options = { :class=>"blog-nav-item"} %>
+       <% end %>
+
+       <%= link_to "Crawl", crawl_path, html_options = { :class=>"blog-nav-item"} %>
+
+      <div class="btn-group">
+        <a class="btn dropdown-toggle blog-nav-item" data-toggle="dropdown" href="#">APIs <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% categories_list.each do |category| %>
+            <li><%= link_to category.name, apis_path(category) %></li>
+          <% end %>
+        </ul>
+      </div>
+
+     </nav>
+   </div>
+ </div>
+
+ <div class="container">
+
+   <div class="blog-header">
+     <h1 class="blog-title">The 9gag Blog</h1>
+     <p class="lead blog-description">Forever Alone No More!</p>
+   </div>
+
+   <div class="row">
+
+     <div class="col-sm-8 blog-main">
+       <% posts.each do |post| %>
+         <div class="blog-post">
+           <!-- <h2 class="blog-post-title"><%= post.title %></h2> -->
+           <h2 class="blog-post-title">
+            <%= link_to post.title, post %>
+           </h2> 
+           <p class="blog-post-meta"><%= post.created_at %> <%= post.point %> points</p>
+
+           <p><%= image_tag(post.img_url, :alt => "#", :size => "380x330") %></p>
+         </div><!-- /.blog-post -->
+       <% end %>
+
+       <%= will_paginate posts, renderer: BootstrapPagination::Rails %>
+
+     </div><!-- /.blog-main -->
+
+     <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+       <div class="sidebar-module sidebar-module-inset">
+         <h4>About</h4>
+         <p>9GAG, Inc., is a social media website whereby users upload and share user-generated images, videos, and GIFs. The website's content, generally referred to as "internet memes" or "internet jokes", is upvoted, downvoted, and commented on by users based on its popularity at a given time.</p>
+       </div>
+       <div class="sidebar-module">
+         <h4>Archives</h4>
+         <ol class="list-unstyled">
+           <li><a href="#">January 2014</a></li>
+           <li><a href="#">December 2013</a></li>
+           <li><a href="#">November 2013</a></li>
+           <li><a href="#">October 2013</a></li>
+           <li><a href="#">September 2013</a></li>
+           <li><a href="#">August 2013</a></li>
+           <li><a href="#">July 2013</a></li>
+           <li><a href="#">June 2013</a></li>
+           <li><a href="#">May 2013</a></li>
+           <li><a href="#">April 2013</a></li>
+           <li><a href="#">March 2013</a></li>
+           <li><a href="#">February 2013</a></li>
+         </ol>
+       </div>
+       <div class="sidebar-module">
+
+       </div>
+     </div>
+
+   </div>
+
+ </div>

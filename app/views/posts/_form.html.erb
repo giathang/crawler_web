@@ -4,28 +4,28 @@
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :cat_id %><br>
+  Category ID:<br /> 
     <%= f.number_field :cat_id %>
   </div>
   <div class="field">
-    <%= f.label :point %><br>
+  Point:<br />
     <%= f.number_field :point %>
   </div>
   <div class="field">
-    <%= f.label :title %><br>
+  Title:<br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+  Image URL:<br />
+    <%= f.text_field :img_url %>
   </div>
   <div class="actions">
     <%= f.submit %>
